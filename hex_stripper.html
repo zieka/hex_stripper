@@ -1,0 +1,113 @@
+<!--
+# Hex Stripper
+## Kyle Scully 2015
+  * Removes Hex characters from message and cleans the text message
+-->
+
+<!DOCTYPE html>
+<html>
+<style>
+/*custom font*/
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+html {
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.3)), url('http://thecodeplayer.com/u/m/wfbg.png');
+    margin: 0;
+    background-attachment: fixed;
+}
+body {
+    font-family: montserrat, arial, verdana;
+}
+#header {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 540px;
+}
+textarea {
+    width: 92%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+}
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+}
+
+#left {
+    width: 50%;
+    float: left;
+    margin-left: auto;
+}
+#right {
+    width: 50%;
+    float: left;
+    margin-right: auto;
+}
+
+</style>
+<script>
+
+
+function parse() {
+    var input_text = document.getElementById("input");
+    var output_text = document.getElementById("output");
+
+    output_text.value = "";
+
+
+    var lines = input_text.value.split('\n');
+
+    for (var i = 0; i < lines.length; i++) {
+
+        
+        line = lines[i].toString()
+        line = line.replace(/.{24}/g, '');
+        line = line.replace(/\./g, '');
+            
+        output_text.value = output_text.value + line;
+        
+    }
+    output_text.value = vkbeautify.xml(output_text.value)
+}
+
+</script>
+<script type="text/javascript" src="http://usablica.github.io/intro.js/intro.js"></script>
+<script type="text/javascript" src="vkbeautify.js"></script>
+
+<link href="http://usablica.github.io/intro.js/introjs.css" rel="stylesheet">
+<link href="http://usablica.github.io/intro.js/example/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+
+<body onload="javascript:introJs().setOption('showBullets', true).start();" >
+    <div id="header" onclick="javascript:introJs().setOption('showBullets', true).start();" href="javascript:void(0);">
+        <h1 align="center"><font color='white'>Hex Stripper</font>
+    </h1>
+    </div>
+    <div id="left">
+        <textarea data-step="1" data-intro="Copy and paste your Hex message into this box." data-position='right' wrap="off" id="input" rows="25" cols="120" placeholder="Paste hex message here ..."></textarea>
+        <br>
+        <br>
+        <button id="button" data-step="2" data-intro="Once you have your script pasted in click this buttom to extract test message" data-position='right' value="clickme" onclick="parse();" type="button">Extract Text Message</button>
+        <br>
+        <br>
+    </div>
+    <div id="right">
+        <textarea data-step="3" data-intro="Here you will see the cleaned up message" data-position='left' wrap="off" id="output" rows="25" cols="120" placeholder="Your clean text message will show up here"></textarea>
+        <br>
+        <br>
+    </div>
+</body>
+
+
+
+</html>
